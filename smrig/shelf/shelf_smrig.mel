@@ -1,0 +1,44 @@
+global proc shelf_smrig () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+    string $icon_path = python("import smrig; smrig.base_path+'/gui/icons/'");
+
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "from smrig import gui\nreload_hierarchy(gui)\nmain_ui = gui.main.run()\nself = main_ui.guides_wdg"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "from smrig import gui\nreload_hierarchy(gui)\nmain_ui = gui.tools..."
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"logo.png" )
+        -image1 ($icon_path+"logo.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import sys\np=r'X:\\Character\\Rigging\\RCTools_v2.0'\nif p not in sys.path:\n\tsys.path.insert(0, p)\nfrom smrig import build\nfrom smrig import gui\nfrom smrig.lib import utilslib\nutilslib.py.reload_hierarchy(build)\nutilslib.py.reload_hierarchy(gui)\nimport smrig\nfrom smrig.gui import main\nfrom smrig.lib.utilslib.py import reload_hierarchy\nmain_ui = main.run()\nCHARACTER_NAME = \"BaseMH\"\n\nROOT_DIR = r\"\\\\prodnas\\XDrive\\Character\\Rigging\\RCTools_v2.0\\dna_calibration\"\nMAYA_VERSION = \"2023\"\nROOT_LIB_DIR = pathlib.normpath(os.path.join (ROOT_DIR, \"lib\", \"Maya2023\"))\nLIB_DIR = pathlib.normpath(os.path.join (ROOT_LIB_DIR, \"windows\"))\nsyspath.insert(0, ROOT_DIR)\nsyspath.insert(0, LIB_DIR)"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mip 0
+    ;
+
+}
