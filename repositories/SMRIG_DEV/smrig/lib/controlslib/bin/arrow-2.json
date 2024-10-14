@@ -1,0 +1,79 @@
+{
+  "arrow-2": {
+    "icon": "arrow-2.png",
+    "note": "Used as the 'body' control. Even though its shape represents two directions, this is a direct subordinate to the global control butrotates and translates through all axis. On a biped it is the control that drops the entire character from the hips, causing the legs to bend.",
+    "shape": [
+      {
+        "degree": 1,
+        "periodic": false,
+        "point": [
+          [
+            -0.1428709771135285,
+            0.0,
+            0.0
+          ],
+          [
+            -0.1428709771135285,
+            0.0,
+            0.571419348590981
+          ],
+          [
+            -0.2857096742954905,
+            0.0,
+            0.571419348590981
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            0.2857096742954905,
+            0.0,
+            0.571419348590981
+          ],
+          [
+            0.1428709771135285,
+            0.0,
+            0.571419348590981
+          ],
+          [
+            0.1428709771135285,
+            0.0,
+            0.0
+          ],
+          [
+            0.1428709771135285,
+            0.0,
+            -0.571419348590981
+          ],
+          [
+            0.2857096742954905,
+            0.0,
+            -0.571419348590981
+          ],
+          [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          [
+            -0.2857096742954905,
+            0.0,
+            -0.571419348590981
+          ],
+          [
+            -0.1428709771135285,
+            0.0,
+            -0.571419348590981
+          ],
+          [
+            -0.1428709771135285,
+            0.0,
+            0.0
+          ]
+        ]
+      }
+    ]
+  }
+}

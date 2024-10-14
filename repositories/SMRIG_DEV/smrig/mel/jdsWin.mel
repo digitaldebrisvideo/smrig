@@ -1,0 +1,94 @@
+// ===========================================================================
+// Copyright 2016 Autodesk, Inc. All rights reserved.
+//
+// Use of this software is subject to the terms of the Autodesk license
+// agreement provided at the time of installation or download, or which
+// otherwise accompanies this software in either electronic or hard copy form.
+// ===========================================================================
+//
+//
+//  Creation Date:  1/27/97
+//
+//
+//  Description:
+//      This creates a window with a slider for the jointDisplayScale command
+//		under the "Display" menu on the main menubar.
+//
+
+global proc jdsReset()
+{
+	jointDisplayScale 1.0;
+	floatSliderGrp -e -v 1.0 jdswidget;
+}
+
+global proc jdsWin()
+{
+
+	float $jdsVal1;
+
+	$jdsVal1 = `jointDisplayScale -q`;
+
+
+    if ( `window -ex jdsWnd` )
+	{
+    	showWindow jdsWnd;
+	}
+	else
+	{
+		window
+		-rtf 1
+		// -wh 242 100
+		// -w 242
+		-title (uiRes("m_jdsWin.kJointDisplayScale"))
+		-iconName (uiRes("m_jdsWin.kJds"))
+		-menuBar 1
+		-height 75
+		-s 0
+		jdsWnd;
+
+		menu
+			-p jdsWnd
+			-label (uiRes("m_jdsWin.kReset"))
+			-enable 1
+			-familyImage "menuIconReset.png"
+			jdsResetMenu;
+
+			menuItem
+			-p jdsResetMenu
+			-label (uiRes("m_jdsWin.kHundred"))
+			-c "jdsReset"
+			jdsResetToItem;
+
+			setParent jdsWnd;
+
+			formLayout jdsform;
+
+			columnLayout jdscol;
+
+        		floatSliderGrp
+				-cw 2 300
+				-field 1
+				-min 0.01
+				-max 3.0
+				-fieldMinValue 0.01
+				-fieldMaxValue 100.0
+				-pre 2
+				-v $jdsVal1
+				-dc "jointDisplayScale #1"
+				-cc "jointDisplayScale #1"
+				jdswidget;
+
+        		formLayout -e
+				-af jdscol top 3
+				-af jdscol left 3
+				-af jdscol right 3
+				-af jdscol bottom 3
+				jdsform;
+
+
+        	}
+        	showWindow jdsWnd;
+        	window -e -wh 400 65 jdsWnd;
+
+        	}
+

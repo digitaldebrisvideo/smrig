@@ -1,0 +1,17 @@
+{
+    "themeRandomizer.themes.blacklist": [
+        "Random Color Theme 2",
+        "Md Abdur Rakib Dark (Style - 13)",
+        "Aura Soft Dark (Soft Text)",
+        "Darcula Pycharm Theme (dimmed)",
+        "Color Coffee Light",
+        "Md Abdur Rakib Light (Style - 37)",
+        "Mariana Pro (Cool)"
+    ],
+    "workbench.colorTheme": "Min Light",
+    "editor.experimentalInlineEdit.fontFamily": "poppy",
+    "editor.inlayHints.fontFamily": "poppy",
+    "editor.inlineSuggest.fontFamily": "poppy",
+    "editor.quickSuggestions": false,
+    "themeRandomizer.enabled": false
+}

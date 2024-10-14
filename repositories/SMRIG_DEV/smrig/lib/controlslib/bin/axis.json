@@ -1,0 +1,56 @@
+{
+  "axis": {
+    "icon": "axis.png",
+    "note": "Axis control with 3 shape nodes for x, y & z",
+    "shape": [
+      {
+        "degree": 1,
+        "periodic": false,
+        "point": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "degree": 1,
+        "periodic": false,
+        "point": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "degree": 1,
+        "periodic": false,
+        "point": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ]
+      }
+    ]
+  }
+}

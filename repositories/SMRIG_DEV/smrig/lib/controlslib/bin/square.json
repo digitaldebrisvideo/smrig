@@ -1,0 +1,39 @@
+{
+  "square": {
+    "icon": "square.png",
+    "note": "A targeting shape. For example, where the eyes aim.",
+    "shape": [
+      {
+        "degree": 1,
+        "periodic": false,
+        "point": [
+          [
+            -1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            -1.0
+          ],
+          [
+            -1.0,
+            0.0,
+            -1.0
+          ],
+          [
+            -1.0,
+            0.0,
+            1.0
+          ]
+        ]
+      }
+    ]
+  }
+}

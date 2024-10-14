@@ -1,0 +1,926 @@
+global proc shelf_rigtools () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+    string $icon_path = python("import smrig; smrig.base_path+'/gui/icons/'");
+
+
+    shelfButton
+        -enableCommandRepeat 0
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Print"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Print"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"rb_print.png" )
+        -image1 ($icon_path+"rb_print.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "from smrig.lib import attributeslib\nattributeslib.connection.print_connections()"
+        -sourceType "python"
+        -commandRepeatable 0
+        -flat 1
+        -mi "Print Connections" ( "from smrig.lib import attributeslib\nattributeslib.connection.print_connections()" )
+        -mip 0
+        -mi "Print World Xforms" ( "from smrig.lib import transformslib\ntransformslib.xform.print_transforms()" )
+        -mip 1
+        -mi "Print Selection As List - 1 Column" ( "from smrig.lib import selectionlib\nselectionlib.print_as_pylist(num_columns=1)" )
+        -mip 2
+        -mi "Print Selection As List - 2 Column" ( "from smrig.lib import selectionlib\nselectionlib.print_as_pylist(num_columns=2)" )
+        -mip 3
+        -mi "Print Selection As List - 3 Column" ( "from smrig.lib import selectionlib\nselectionlib.print_as_pylist(num_columns=3)" )
+        -mip 4
+        -mi "Print Selection As List - 4 Column" ( "from smrig.lib import selectionlib\nselectionlib.print_as_pylist(num_columns=4\n)" )
+        -mip 5
+        -mi "__________________________________" ( "print(\"User defined menuItem\");" )
+        -mi "Print Valid Control Shape Names" ( "from smrig.lib import controlslib\ncontrolslib.library.get_all_control_shapes(print_list=True)\n\n\n" )
+        -mip 7
+        -mi "__________________________________" ( "" )
+        -mi "Prtint Clashing Node Names " ( "from smrig.lib import nodepathlib\nnodepathlib.print_clashing_nodes_names()" )
+        -mip 9
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Toggle joint LRA on selected."
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "LRA"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -imageOverlayLabel "LRA"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image "menuIconModify.png"
+        -image1 "menuIconModify.png"
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "ToggleLocalRotationAxes"
+        -sourceType "mel"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Joint display scale."
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "JointScale"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"kinJoint.png" )
+        -image1 ($icon_path+"kinJoint.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "jdsWin"
+        -sourceType "mel"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Joint Display Scale UI" ( "jdsWin\n" )
+        -mi "Joint Scale: 0.005" ( "from maya import cmds \ncmds.jointDisplayScale(0.005)" )
+        -mip 1
+        -mi "Joint Scale: 0.01" ( "from maya import cmds \ncmds.jointDisplayScale(0.01)" )
+        -mip 2
+        -mi "Joint Scale: 0.05" ( "from maya import cmds \ncmds.jointDisplayScale(0.05)" )
+        -mip 3
+        -mi "Joint Scale: 0.1" ( "from maya import cmds \ncmds.jointDisplayScale(0.1)" )
+        -mip 4
+        -mi "Joint Scale: 0.3" ( "from maya import cmds \ncmds.jointDisplayScale(0.3)" )
+        -mip 5
+        -mi "Joint Scale: 0.5" ( "from maya import cmds \ncmds.jointDisplayScale(0.5)" )
+        -mip 6
+        -mi "Joint Scale: 0.7" ( "from maya import cmds \ncmds.jointDisplayScale(0.75)" )
+        -mip 7
+        -mi "Joint Scale: 1.0" ( "from maya import cmds \ncmds.jointDisplayScale(1.0)" )
+        -mip 8
+        -mi "Joint Scale: 2.0" ( "from maya import cmds \ncmds.jointDisplayScale(2.0)" )
+        -mip 9
+        -mi "Joint Scale: 3.0" ( "from maya import cmds \ncmds.jointDisplayScale(3.0)" )
+        -mip 10
+        -mi "Joint Scale: 5.0" ( "from maya import cmds \ncmds.jointDisplayScale(5.0)" )
+        -mip 11
+        -mi "Joint Scale: 10.0" ( "from maya import cmds \ncmds.jointDisplayScale(10.0)" )
+        -mip 12
+        -mi "Joint Scale: 20.0" ( "from maya import cmds \ncmds.jointDisplayScale(20.0)" )
+        -mip 13
+        -mi "Joint Scale: 30.0" ( "from maya import cmds \ncmds.jointDisplayScale(30.0)" )
+        -mip 14
+        -mi "Joint Scale: 50.0" ( "from maya import cmds \ncmds.jointDisplayScale(50.0)" )
+        -mip 15
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "DeleteCh"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "DeleteCh"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"deleteActive.png" )
+        -image1 ($icon_path+"deleteActive.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "from maya import cmds\ncmds.delete(ch=1)\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Delete History" ( "from maya import cmds\ncmds.delete(ch=1)\n" )
+        -mip 0
+        -mi "Delete Non-Deformer History" ( "import maya.mel as mel \nmel.eval('doBakeNonDefHistory( 1, {\"prePost\" });')\n\n\n" )
+        -mip 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Freeze"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Freeze"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"freezeSelected.png" )
+        -image1 ($icon_path+"freezeSelected.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "from maya import cmds \ncmds.makeIdentity(apply=1, t=1, r=1, s=1, n=0, pn=1)\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Freeze Transforms" ( "from maya import cmds \ncmds.makeIdentity(apply=1, t=1, r=1, s=1, n=0, pn=1)\n" )
+        -mip 0
+        -mi "Freeze Translates" ( "from maya import cmds \ncmds.makeIdentity(apply=1, t=1, r=0, s=0, n=0, pn=0)" )
+        -mip 1
+        -mi "Freeze Rotates" ( "from maya import cmds \ncmds.makeIdentity(apply=1, t=0, r=1, s=0, n=0, pn=0)" )
+        -mip 2
+        -mi "Freeze Scales" ( "from maya import cmds \ncmds.makeIdentity(apply=1, t=0, r=0, s=1, n=0, pn=0)" )
+        -mip 3
+        -mi "________________" ( "print(\"User defined menuItem\");" )
+        -mi "Zero Pivots" ( "from maya import cmds \ncmds.xform(piv=(0,0,0))\n" )
+        -mip 5
+        -mi "________________" ( "print(\"User defined menuItem\");" )
+        -mi "Freeze and Snap Pivot (Select Target Last)" ( "nodes = cmds.ls(sl=1)\ncmds.makeIdentity(nodes[:-1], apply=1, t=1, r=1, s=1, n=0, pn=1)\ncmds.xform(nodes[:-1], piv=cmds.xform(nodes[-1], q=1, ws=1, t=1))" )
+        -mip 7
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Unlock"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Unlock"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"unlockGeneric.png" )
+        -image1 ($icon_path+"unlockGeneric.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya.cmds as cmds\nfrom smrig.lib import attributeslib\n\nattributeslib.set_attributes(cmds.ls(sl=1), [\"t\", \"r\", \"s\", \"v\", \"ro\", \"jo\", \"radius\"], lock=False, keyable=True, user_defined=True)\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Unlock Attributes" ( "import maya.cmds as cmds\nfrom smrig.lib import attributeslib\n\nattributeslib.set_attributes(cmds.ls(sl=1), [\"t\", \"r\", \"s\", \"v\", \"ro\", \"jo\", \"radius\"], lock=False, keyable=True, user_defined=True)\n" )
+        -mip 0
+        -mi "Unlock Translates" ( "import maya.cmds as cmds\nfrom smrig.lib import attributeslib\n\nattributeslib.set_attributes(cmds.ls(sl=1), [\"t\"], lock=False, keyable=True)\n" )
+        -mip 1
+        -mi "Unlock Rotates" ( "import maya.cmds as cmds\nfrom smrig.lib import attributeslib\n\nattributeslib.set_attributes(cmds.ls(sl=1), [\"r\"], lock=False, keyable=True)\n" )
+        -mip 2
+        -mi "Unlock Scale" ( "import maya.cmds as cmds\nfrom smrig.lib import attributeslib\n\nattributeslib.set_attributes(cmds.ls(sl=1), [\"s\"], lock=False, keyable=True)\n" )
+        -mip 3
+        -mi "Unlock Visibility" ( "import maya.cmds as cmds\nfrom smrig.lib import attributeslib\n\nattributeslib.set_attributes(cmds.ls(sl=1), [\"v\"], lock=False, keyable=True)\n" )
+        -mip 4
+        -mi "Unlock User Defined" ( "import maya.cmds as cmds\nfrom smrig.lib import attributeslib\n\nattributeslib.set_attributes(cmds.ls(sl=1), [], lock=False, keyable=True, user_defined=True)\n" )
+        -mip 5
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Lock"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Lock"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"lockGeneric.png" )
+        -image1 ($icon_path+"lockGeneric.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya.cmds as cmds\nfrom smrig.lib import attributeslib\n\nattributeslib.set_attributes(cmds.ls(sl=1), [\"t\", \"r\", \"s\", \"v\", \"ro\", \"jo\", \"radius\"], lock=True, keyable=False, user_defined=True)\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Lock Attributes" ( "import maya.cmds as cmds\nfrom smrig.lib import attributeslib\n\nattributeslib.set_attributes(cmds.ls(sl=1), [\"t\", \"r\", \"s\", \"v\", \"ro\", \"jo\", \"radius\"], lock=True, keyable=False, user_defined=True)\n" )
+        -mip 0
+        -mi "Lock Translates" ( "import maya.cmds as cmds\nfrom smrig.lib import attributeslib\n\nattributeslib.set_attributes(cmds.ls(sl=1), [\"t\"], lock=True, keyable=False)\n" )
+        -mip 1
+        -mi "Lock Rotates" ( "import maya.cmds as cmds\nfrom smrig.lib import attributeslib\n\nattributeslib.set_attributes(cmds.ls(sl=1), [\"r\"], lock=True, keyable=False)\n" )
+        -mip 2
+        -mi "Lock Scales" ( "import maya.cmds as cmds\nfrom smrig.lib import attributeslib\n\nattributeslib.set_attributes(cmds.ls(sl=1), [\"s\"], lock=True, keyable=False)\n" )
+        -mip 3
+        -mi "Lock Visibility" ( "import maya.cmds as cmds\nfrom smrig.lib import attributeslib\n\nattributeslib.set_attributes(cmds.ls(sl=1), [\"v\"], lock=True, keyable=False)\n" )
+        -mip 4
+        -mi "Lock User Defined" ( "import maya.cmds as cmds\nfrom smrig.lib import attributeslib\n\nattributeslib.set_attributes(cmds.ls(sl=1), [], lock=True, keyable=False, user_defined=True)\n" )
+        -mip 5
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "from smrig.lib import nodeslib\nnodeslib.display.set_display_override(cmds.ls(sl=1), 0)"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "display"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -imageOverlayLabel "display"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image "pythonFamily.png"
+        -image1 "pythonFamily.png"
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "from smrig.lib import nodeslib\nnodeslib.display.set_display_type(cmds.ls(sl=1), \"normal\")\nnodeslib.display.set_display_override(cmds.ls(sl=1), 0)"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Set Display Override: Off" ( "from smrig.lib import nodeslib\nnodeslib.display.set_display_type(cmds.ls(sl=1), \"normal\")\nnodeslib.display.set_display_override(cmds.ls(sl=1), 0)" )
+        -mip 0
+        -mi "Set Display Override: Normal" ( "from smrig.lib import nodeslib\nnodeslib.display.set_display_type(cmds.ls(sl=1), \"normal\")" )
+        -mip 1
+        -mi "Set Display Override: Template" ( "from smrig.lib import nodeslib\nnodeslib.display.set_display_type(cmds.ls(sl=1), \"template\")" )
+        -mip 2
+        -mi "Set Display Override: Reference" ( "from smrig.lib import nodeslib\nnodeslib.display.set_display_type(cmds.ls(sl=1), \"reference\")" )
+        -mip 3
+    ;
+    separator
+        -enable 1
+        -width 34
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -style "shelf"
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "ngst"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "ngst"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"paintSkinWeights.png" )
+        -image1 ($icon_path+"paintSkinWeights.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "from maya import mel \ntry:\n\timport ngSkinTools2; ngSkinTools2.open_ui()\nexcept:\n\tmel.eval('ArtPaintSkinWeightsToolOptions')\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Copy Bind" ( "from smrig.lib import deformlib\nfrom maya import cmds \n\nnodes = cmds.ls(sl=1)\ndeformlib.skincluster.copy_bind(nodes[0], nodes[1:])" )
+        -mip 0
+        -mi "Add Influences From Source" ( "from smrig.lib import deformlib\nfrom maya import cmds\n\nnodes = cmds.ls(sl=1)\ndeformlib.skincluster.add_influences_from_source(nodes[0], nodes[1:])" )
+        -mip 1
+        -mi "Remove Unused Influences" ( "RemoveUnusedInfluences;\n" )
+        -mi "____________________________" ( "" )
+        -mi "Turn Off Inherits Transform" ( "from maya import cmds\n\nfor node in cmds.ls(sl=1):\n    if cmds.objExists(node+\".inheritsTransform\"):\n        cmds.setAttr(node+\".inheritsTransform\", 0)" )
+        -mip 4
+        -mi "____________________________" ( "" )
+        -mi "Select Influences" ( "from smrig.lib import deformlib\nfrom maya import cmds\n\ncmds.select(deformlib.skincluster.get_influences(cmds.ls(sl=1)))\n" )
+        -mip 6
+        -mi "Print Inluences" ( "from smrig.lib import deformlib\nfrom maya import cmds\n\ndeformlib.skincluster.print_influences(cmds.ls(sl=1))\n" )
+        -mip 7
+        -mi "____________________________" ( "print(\"User defined menuItem\");" )
+        -mi "Go To Bind Pose" ( "GoToBindPose;" )
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Cls"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Cls"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"cluster.png" )
+        -image1 ($icon_path+"cluster.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "from smrig.gui.tool import cluster;cluster.run()"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "ShapeEdit"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "ShapeEdit"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"blendShapeEditor.png" )
+        -image1 ($icon_path+"blendShapeEditor.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "ShapeEditor"
+        -sourceType "mel"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "PoseEdit"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "PoseEdit"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"poseEditor.png" )
+        -image1 ($icon_path+"poseEditor.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "PoseEditor"
+        -sourceType "mel"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Cons"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Cons"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"parentConstraint.png" )
+        -image1 ($icon_path+"parentConstraint.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "from smrig.lib import constraintslib\nfrom maya import cmds\n\nnodes = cmds.ls(sl=1)\nfor node in nodes[:-1]:\n    constraintslib.matrix_constraint(nodes[-1], node)\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Matrix Constraint  ( Select Driver Last ) " ( "from smrig.lib import constraintslib\nfrom maya import cmds\n\nnodes = cmds.ls(sl=1)\nfor node in nodes[:-1]:\n    constraintslib.matrix_constraint(nodes[-1], node)\n" )
+        -mip 0
+        -mi "_________________________________________" ( "print(\"User defined menuItem\");" )
+        -mi "Snap Point && Orient" ( "from smrig.lib import transformslib\nfrom maya import cmds \n\nnodes = cmds.ls(sl=1)\ntransformslib.xform.match(nodes[0], nodes[1:], translate=True, rotate=True, scale=False, pivot=False)\n" )
+        -mip 2
+        -mi "Snap Point" ( "from smrig.lib import transformslib\nfrom maya import cmds \n\nnodes = cmds.ls(sl=1)\ntransformslib.xform.match(nodes[0], nodes[1:], translate=True, rotate=False, scale=False, pivot=False)\n" )
+        -mip 3
+        -mi "Snap Orient" ( "from smrig.lib import transformslib\nfrom maya import cmds \n\nnodes = cmds.ls(sl=1)\ntransformslib.xform.match(nodes[0], nodes[1:], translate=False, rotate=True, scale=False, pivot=False)\n" )
+        -mip 4
+        -mi "Snap Orient To World" ( "import maya.cmds as cmds\ncmds.xform(ws=True, ro=[0,0,0])\n" )
+        -mip 5
+        -mi "Snap Last To Selected Position" ( "from smrig.lib import transformslib\ntransformslib.xform.match_selection_position()\n" )
+        -mip 6
+        -mi "_________________________________________" ( "" )
+        -mi "Orient Guide Control Pivot To World" ( "for s in cmds.ls(sl=1):\n    pv = cmds.listRelatives(s, p=1)[0]\n    t = cmds.xform(s, ws=1, q=1, t=1)\n    ro = cmds.xform(s, ws=1, q=1, ro=1)\n    cmds.xform(pv, ws=1, ro=[0,0,0])\n    cmds.xform(s, ws=1, ro=ro, t=t)" )
+        -mip 8
+        -mi "_________________________________________" ( "\n" )
+        -mi "Weighted Constraint ( Select Mesh Last )" ( "from smrig.lib import constraintslib\nfrom maya import cmds\n\nnodes = cmds.ls(sl=1)\nfor node in nodes[:-1]:\n    constraintslib.weighted_constraint(nodes[-1], node)\n" )
+        -mip 10
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Loc"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Loc"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"locator.png" )
+        -image1 ($icon_path+"locator.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "from smrig.lib import transformslib    \ntransformslib.xform.match_locator()\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Snap Last To Selected Position" ( "from smrig.lib import transformslib\ntransformslib.xform.match_selection_position()\n" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Set Driven Key"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Set Driven Key"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image "setDrivenKeyframe.png"
+        -image1 "setDrivenKeyframe.png"
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "SetDrivenKey"
+        -sourceType "mel"
+        -doubleClickCommand "SetDrivenKey"
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Selection"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "Selection"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"selectByObject.png" )
+        -image1 ($icon_path+"selectByObject.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya.cmds as cmds\ncmds.select(sel)\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Save Selection To Variable: 'sel'" ( "import maya.cmds as cmds\nsel = cmds.ls(sl=1)\n" )
+        -mip 0
+        -mi "__________________________________" ( "" )
+        -mip 1
+        -mi "Select 'sel' Variable" ( "import maya.cmds as cmds\ncmds.select(sel)\n\n" )
+        -mip 2
+        -mi "Select Add 'sel' Variable" ( "import maya.cmds as cmds\ncmds.select(sel, add=1)\n" )
+        -mip 3
+        -mi "Deselect 'sel' Variable" ( "import maya.cmds as cmds\ncmds.select(sel, d=1)\n" )
+        -mip 4
+        -mi "__________________________________" ( "print(\"User defined menuItem\");" )
+        -mi "Reverse Selection " ( "from smrig.lib import selectionlib\nselectionlib.reverse_selection()" )
+        -mip 6
+        -mi "__________________________________" ( "print(\"User defined menuItem\");" )
+        -mi "Select Mirrored Node Names" ( "from smrig.lib import selectionlib\nselectionlib.select_mirrored_nodes()" )
+        -mip 8
+        -mi "Select Add Mirrored Node Names" ( "from smrig.lib import selectionlib\nselectionlib.select_mirrored_nodes(add=True)" )
+        -mip 9
+        -mi "__________________________________" ( "print(\"User defined menuItem\");" )
+        -mip 10
+        -mi "Print 'selselection' Variable" ( "print \"--------------------\\n\"\nfor s in sel:\n\tprint s" )
+        -mip 11
+        -mi "Print Selection" ( "from maya import cmds\n\nprint \"--------------------\\n\"\nfor s in cmds.ls(sl=1):\n\tprint s" )
+        -mip 12
+    ;
+    separator
+        -enable 1
+        -width 34
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -style "shelf"
+        -horizontal 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "from smrig import partslib\nself = partslib.part()\n"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "part"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -imageOverlayLabel "part"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image "pythonFamily.png"
+        -image1 "pythonFamily.png"
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "from smrig import partslib\nfrom smrig.lib.utilslib.py import reload_hierarchy\nreload_hierarchy(partslib)\nself = partslib.part()\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Start Guide" ( "from smrig import partslib\nfrom smrig.lib.utilslib.py import reload_hierarchy\n\nself = partslib.part()\nself.start_guide()" )
+        -mip 0
+        -mi "_____________________________" ( "" )
+        -mi "Build Skeleton && Start Rig" ( "from smrig import partslib\nfrom smrig.build import skeleton\nfrom smrig.lib.utilslib.py import reload_hierarchy\n\nreload_hierarchy(partslib)\n\nguide = cmds.ls(sl=1)[0]\npart_type = cmds.getAttr(guide+\".partType\")\n\nskeleton.build()\n\npartslib.build_rigs(exclude_types=[part_type], build_last=False)\nself = partslib.part(guide if \"stashed:\" in guide else \"stashed:\"+guide)\nself.start_rig()" )
+        -mip 2
+        -mi "_____________________________" ( "print(\"User defined menuItem\");" )
+        -mi "Reload partslib" ( "from smrig.lib.utilslib.py import reload_hierarchy\nfrom smrig import partslib\n\nreload_hierarchy(partslib)\npartslib.manager.reload_lib()" )
+        -mip 4
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "from smrig import gui\nreload_hierarchy(gui)\nmain_ui = gui.tools.charmain.show()\nself = main_ui.guides_wdg"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "from smrig import gui\nreload_hierarchy(gui)\nmain_ui = gui.tools..."
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"logo3.png" )
+        -image1 ($icon_path+"logo3.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "from smrig.gui import charmain\nfrom smrig.lib.utilslib.py import reload_hierarchy\nam=charmain.CharMain()\nam.show()\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Reload smrig" ( "import smrig\nfrom smrig.lib.utilslib.py import reload_hierarchy\n\nreload_hierarchy(smrig)\n\nfrom smrig.gui. import charmain\nam_ui = am_ui.run()\n" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "from smrig import gui\nreload_hierarchy(gui)\nmain_ui = gui.main.run()\nself = main_ui.guides_wdg"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "from smrig import gui\nreload_hierarchy(gui)\nmain_ui = gui.tools..."
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"logo.png" )
+        -image1 ($icon_path+"logo.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "from smrig.gui import main\nfrom smrig.lib.utilslib.py import reload_hierarchy\nmain_ui = main.run()\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+        -mi "Reload RigBot" ( "import smrig\nfrom smrig.lib.utilslib.py import reload_hierarchy\n\nreload_hierarchy(smrig)\n\nfrom smrig.gui import main\nmain_ui = main.run()\n" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Control Editor UI"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "ctrls ui"
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image ($icon_path+"control.png" )
+        -image1 ($icon_path+"control.png" )
+        -style "iconOnly"
+        -marginWidth 1
+        -marginHeight 1
+        -command "from smrig.gui.tool import controls\ncontrols.run()\n"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "import sys\np=r'r'X:\\Character\\Rigging\\RCTools_v2.0'\nif p not in sys.path:\n\tsys.path.insert(0, p)\nimport smrig\nfrom smrig.lib.utilslib.py import reload_hierarchy"
+        -enableBackground 0
+        -backgroundColor 0 0 0
+        -highlightColor 0.321569 0.521569 0.65098
+        -align "center"
+        -label "import sys\np=r'r'X:\\Character\\Rigging\\RCTools_v2.0'\nif p..."
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont"
+        -overlayLabelColor 0.8 0.8 0.8
+        -overlayLabelBackColor 0 0 0 0.5
+        -image "pythonFamily.png"
+        -image1 "pythonFamily.png"
+        -style "iconOnly"
+        -marginWidth 0
+        -marginHeight 1
+        -command "import sys\np=r'X:\\Character\\Rigging\\RCTools_v2.0'\nif p not in sys.path:\n\tsys.path.insert(0, p)\nimport smrig\nfrom smrig.lib.utilslib.py import reload_hierarchy"
+        -sourceType "python"
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+}
